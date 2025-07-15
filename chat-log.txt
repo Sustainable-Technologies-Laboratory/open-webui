@@ -1,0 +1,8 @@
+[2025-05-28T13:47:04.646Z] SYSTEM: Fehler: No element found for selector: [type ="email"]
+[2025-05-28T13:48:09.439Z] SYSTEM: Fehler: No element found for selector: [type ="email"]
+[2025-05-28T14:07:47.442Z] USER: Hi kannst du mir Feedback zu Aufgabe 1 geben? Hier meine ergebnisse: Transport: 1,65 kg CO2 eq. Nutzung: 97,76 kg CO2 eq. Produktion: 294,242 kg CO2 eq.
+[2025-05-28T14:08:17.452Z] SYSTEM: Fehler: Waiting for selector `#voice-input-button` failed: Waiting failed: 30000ms exceeded
+[2025-05-31T14:57:34.447Z] USER: Hi kannst du mir Feedback zu Aufgabe 1 geben? Hier meine ergebnisse: Transport: 1,65 kg CO2 eq. Nutzung: 97,76 kg CO2 eq. Produktion: 294,242 kg CO2 eq.
+[2025-05-31T14:58:04.457Z] SYSTEM: Fehler: Waiting for selector `#voice-input-button` failed: Waiting failed: 30000ms exceeded
+[2025-05-31T15:10:45.658Z] USER: Hi kannst du mir Feedback zu Aufgabe 1 geben? Hier meine ergebnisse: Transport: 1,65 kg CO2 eq. Nutzung: 97,76 kg CO2 eq. Produktion: 294,242 kg CO2 eq.
+[2025-05-31T15:11:15.667Z] SYSTEM: Fehler: Waiting for selector `#voice-input-button` failed: Waiting failed: 30000ms exceeded

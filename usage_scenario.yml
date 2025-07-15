@@ -1,0 +1,116 @@
+name: Chatbot Test
+description: Testlauf mit Puppeteer und Ollama zur Energieverbrauchsanalyse
+author: linda.becker@hs-bochum.de
+
+ignore-unsupported-compose: true
+networks:
+  chatbot-network:
+services:
+  ollama:
+    volumes:
+      - ollama:/root/.ollama
+    container_name: ollama
+#    tty: true
+    restart: unless-stopped
+    image: ollama/ollama:latest
+#    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    networks:
+      - chatbot-network
+
+  open-webui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+ #   image: ghcr.io/open-webui/open-webui:v0.6.9
+    container_name: open-webui
+    volumes:
+      - data:/app/backend/data
+    depends_on:
+      - ollama
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://ollama:11434"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    ports:
+       - "3000:8080"
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - WEBUI_SECRET_KEY=
+ #   extra_hosts:
+#      - host.docker.internal:host-gateway
+    setup-commands:
+      - command: cp /tmp/repo/webui.db /app/backend/data/webui.db
+#      - cp /tmp/repo/webui.db /app/backend/data/webui.db
+    restart: unless-stopped
+    networks:
+      - chatbot-network
+
+  puppeteer:
+    build:
+      context: ./puppeteer-in-docker
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8080"
+    environment:
+      NODE_ENV: "production"
+      CHROMIUM_PATH: "/usr/bin/chromium"
+      PORT: "8081"
+    setup-commands:
+      - command: cp /tmp/repo/puppeteer-flow.mjs /app/puppeteer-flow.mjs
+    networks:
+      - chatbot-network
+
+flow:
+  - name: Chatbot Test
+    container: puppeteer
+#    store-stderr: true
+ #   store-stdout: true
+ #   log-stderr: true   # Aktiviere stderr-Logs für diesen Flow
+#    log-stdout: true   # Aktiviere stdout-Logs für diesen Flow
+    commands:
+      - type: console
+        command: node puppeteer-flow.mjs
+        note: Starting Puppeteer Flow 1
+        read-notes-stdout: true
+      - type: console
+        command: node puppeteer-flow.mjs
+        note: Starting Puppeteer Flow 2
+        read-notes-stdout: true
+      - type: console
+        command: node puppeteer-flow.mjs
+        note: Starting Puppeteer Flow 3
+        read-notes-stdout: true
+      - type: console
+        command: node puppeteer-flow.mjs
+        note: Starting Puppeteer Flow 4
+        read-notes-stdout: true
+      - type: console
+        command: node puppeteer-flow.mjs
+        note: Starting Puppeteer Flow 5
+        read-notes-stdout: true
+      - type: console
+        command: node puppeteer-flow.mjs
+        note: Starting Puppeteer Flow 6
+        read-notes-stdout: true
+      - type: console
+        command: node puppeteer-flow.mjs
+        note: Starting Puppeteer Flow 7
+        read-notes-stdout: true
+      - type: console
+        command: node puppeteer-flow.mjs
+        note: Starting Puppeteer Flow 8
+        read-notes-stdout: true
+      - type: console
+        command: node puppeteer-flow.mjs
+        note: Starting Puppeteer Flow 9
+        read-notes-stdout: true
+      - type: console
+        command: node puppeteer-flow.mjs
+        note: Starting Puppeteer Flow 10
+        read-notes-stdout: true
+
