@@ -1,0 +1,3 @@
+[submodule "puppeteer-in-docker"]
+	path = puppeteer-in-docker
+	url = https://github.com/Sustainable-Technologies-Laboratory/puppeteer-in-docker.git
