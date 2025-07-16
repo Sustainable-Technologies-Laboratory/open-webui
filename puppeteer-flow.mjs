@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url';
 // __dirname für ES Module erzeugen
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 // ==== Konfiguration ====
 // ✏️ Hier musst du deine lokalen Einstellungen eintragen
@@ -37,7 +38,7 @@ const LOG_FILE = path.join(__dirname, 'chat-log.txt');
     await page.goto(URL, { waitUntil: 'networkidle2' });
 
     //Warten auf Eingabe 
-    await page.waitForTimeout(4000)
+    await sleep(4000);
 
     // 2. Login durchführen
     // ✏️ Passe hier die CSS-Selektoren an deine Seite an
@@ -45,7 +46,7 @@ const LOG_FILE = path.join(__dirname, 'chat-log.txt');
     await page.type('[type ="password"]', PASSWORD);       // ✅ Eingabefeld für Passwort
 
     //Warten auf Eingabe
-    await page.waitForTimeout(4000)
+    await sleep(4000);
 
     // ✏️ Button zum Einloggen
     await Promise.all([
@@ -59,7 +60,7 @@ const LOG_FILE = path.join(__dirname, 'chat-log.txt');
     await page.waitForSelector('#chat-input', { visible: true });
 
     //Warten auf Eingabe
-    await page.waitForTimeout(4000)
+    await sleep(4000);
 
     //Nachricht eingeben
     console.log('Fokussiere Chat-Eingabe und sende Nachricht...');
@@ -82,7 +83,7 @@ const LOG_FILE = path.join(__dirname, 'chat-log.txt');
     logMessage('BOT', response);
 
     //Warten auf Eingabe
-    await page.waitForTimeout(4000)
+    await sleep(4000);
 
   } catch (error) {
     console.error('Fehler:', error);
