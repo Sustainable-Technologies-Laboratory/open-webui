@@ -22,7 +22,7 @@ const LOG_FILE = path.join(__dirname, 'chat-log.txt');
 (async () => {
   // Docker-spezifische Anpassungen (NEU)
   const browser = await puppeteer.launch({
-    executablePath: '/usr/bin/chromium', // Expliziter Chromium-Pfad
+   //≈ executablePath: '/usr/bin/chromium', // Expliziter Chromium-Pfad
     headless: true,
     args: [
       '--no-sandbox',
