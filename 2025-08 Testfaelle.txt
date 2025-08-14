@@ -1,0 +1,7 @@
+Wie lautet das GWP für die Aluminium Komponente?;
+Ich bin beim Transport-Szenario 'Schiff' und verwende die Daten aus der Tabelle. Kannst du kurz bestätigen, ob ich die GWP-Übertragung für jede Teilstrecke (LKW, Schiff, LKW) einzeln berechnen und dann addieren muss?;
+Ich habe Schwierigkeiten, mit der Angabe '0,325 km/Scooter/Tag' im Rebalancing-Szenario umzugehen. Was bedeutet diese Einheit genau und wie sollte ich sie in meine Berechnung einbeziehen?;
+Ich habe für das GWP der Aluminium-Teile einen Wert von 29,556 kg CO2e berechnet, indem ich das gesamte Gewicht (1,642 kg) mit dem GWP-Wert für Primäraluminium (22,3) multipliziert habe. Ist das so richtig?;
+Ich gehe davon aus, dass der Zugtransport nach Bochum (über Kundyzdy) aus China die umweltfreundlichste Option ist, weil Züge generell eine geringere GWP-Emission haben als Flugzeuge. Ist meine Annahme korrekt?;
+In der Transportphase entstehen die meisten Emissionen. Ich empfehle statt einem Seetransport ein Transport mit dem Flugzeug. Das wird einige Emissionen einsparen.
+
