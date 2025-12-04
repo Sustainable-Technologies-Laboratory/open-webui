@@ -150,4 +150,3 @@ async function runBenchmark() {
         process.exit(1);
     }
 })();
-
