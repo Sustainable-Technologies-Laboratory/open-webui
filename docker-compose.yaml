@@ -7,16 +7,16 @@ services:
     tty: true
     restart: unless-stopped
     image: ollama/ollama:${OLLAMA_DOCKER_TAG-latest}
- #   deploy:
- #     resources:
- #       reservations:
- #         devices:
- #           - driver: nvidia
- #             count: all
- #             capabilities: [gpu]
+    gpus: all
     runtime: nvidia
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
+    healthcheck:
+      test: ["CMD-SHELL", "ollama list >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 30s
+      retries: 5
+      start_period: 120s
 
   open-webui:
     build:
@@ -29,17 +29,17 @@ services:
     volumes:
       - open-webui:/app/backend/data
     depends_on:
-      - ollama
+      ollama:
+        condition: service_healthy
     ports:
-#      - ${OPEN_WEBUI_PORT-3000}:80
-       - "3000:8080"
+      # Expose Open WebUI on host port 3002 instead of 3000
+      # (3000 is already in use on this server)
+      - "3000:8080"
     runtime: nvidia
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
       - OLLAMA_BASE_URL=http://ollama:11434
       - WEBUI_SECRET_KEY=
-    extra_hosts:
-      - host.docker.internal:host-gateway
     restart: unless-stopped
 
   puppeteer:
@@ -55,6 +55,8 @@ services:
 
 
 volumes:
-  ollama: {}
+  ollama:
+    external: true
+    name: ollama
   open-webui: {}
 #  puppeteer-in-docker: {}
