@@ -19,12 +19,7 @@ services:
       start_period: 120s
 
   open-webui:
-    build:
-      context: .
-      args:
-        OLLAMA_BASE_URL: '/ollama'
-      dockerfile: Dockerfile
-#    image: ghcr.io/open-webui/open-webui:v0.6.9
+    image: ghcr.io/open-webui/open-webui:latest
     container_name: open-webui
     volumes:
       - open-webui:/app/backend/data
@@ -32,14 +27,13 @@ services:
       ollama:
         condition: service_healthy
     ports:
-      # Expose Open WebUI on host port 3002 instead of 3000
-      # (3000 is already in use on this server)
       - "3000:8080"
-    runtime: nvidia
     environment:
-      - NVIDIA_VISIBLE_DEVICES=all
       - OLLAMA_BASE_URL=http://ollama:11434
-      - WEBUI_SECRET_KEY=
+      - WEBUI_SECRET_KEY=IMMER_GLEICH
+      - ENABLE_SIGNUP=true
+      - ENABLE_WEBSOCKET_SUPPORT=false
+      - ENABLE_ADMIN_CHAT_ACCESS=false
     restart: unless-stopped
 
   puppeteer:
