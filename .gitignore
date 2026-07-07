@@ -307,3 +307,14 @@ dist
 cypress/videos
 cypress/screenshots
 .vscode/settings.json
+
+# Local runtime data
+cache/
+vector_db/
+
+# Local databases
+webui.db
+webui.db.preserve
+
+# Temporary local version files
+v3.*
